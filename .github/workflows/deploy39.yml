@@ -53,6 +53,7 @@ jobs:
         failOnStdErr: false # Required because we use a custom linter.
         deploymentName: ${{ github.run_number }}
         scope: subscription
+        region: ${{ inputs.location }}
         template: ./deploy/resourceGroup.bicep
         parameters: >
           environmentType=${{ inputs.environmentType }}
@@ -60,6 +61,7 @@ jobs:
           location=${{ inputs.location }}
 
   validate:
+    needs: prepare
     runs-on: ubuntu-latest
     steps:
 
