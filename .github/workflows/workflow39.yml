@@ -28,7 +28,7 @@ jobs:
     secrets:
       AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID_TEST }}
       AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-      AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID_IDTY }}
       reviewApiKey: ${{ secrets.REVIEW_API_KEY_TEST }}
 
   # Deploy to the production environment.
@@ -45,5 +45,5 @@ jobs:
     secrets:
       AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID_PROD }}
       AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-      AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID_IDTY }}
       reviewApiKey: ${{ secrets.REVIEW_API_KEY_PROD }}
