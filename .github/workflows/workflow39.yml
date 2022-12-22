@@ -24,6 +24,7 @@ jobs:
     with:
       environmentType: Test
       resourceGroupName: ToyWebsiteTest
+      location: 'westeurope'
       reviewApiUrl: https://sandbox.contoso.com/reviews
     secrets:
       AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID_TEST }}
@@ -41,6 +42,7 @@ jobs:
     with:
       environmentType: Prod
       resourceGroupName: ToyWebsiteProd
+      location: 'westeurope'
       reviewApiUrl: https://api.contoso.com/reviews
     secrets:
       AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID_PROD }}

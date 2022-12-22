@@ -9,6 +9,9 @@ on:
       resourceGroupName:
         required: true
         type: string
+      location:
+        required: true
+        type: string
       reviewApiUrl:
         required: true
         type: string
@@ -28,6 +31,34 @@ permissions:
 
 jobs:
 
+  prepare:
+
+    environment: ${{ inputs.environmentType }}
+    runs-on: ubuntu-latest
+    steps:
+
+    - uses: actions/checkout@v2
+
+    - uses: azure/login@v1
+      name: Sign in to Azure
+      with:
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+    - uses: azure/arm-deploy@v1
+      id: prepare
+      name: Create target resource group
+      with:
+        failOnStdErr: false # Required because we use a custom linter.
+        deploymentName: ${{ github.run_number }}
+        scope: subscription
+        template: ./deploy/resourceGroup.bicep
+        parameters: >
+          environmentType=${{ inputs.environmentType }}
+          resourceGroupName=${{ inputs.resourceGroupName }}
+          location=${{ inputs.location }}
+
   validate:
     runs-on: ubuntu-latest
     steps:
@@ -41,7 +72,7 @@ jobs:
         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-    - if: inputs.environmentType != 'Production'
+    - if: inputs.environmentType != 'Prod'
       uses: azure/arm-deploy@v1
       name: Run preflight validation
       with:
@@ -54,7 +85,7 @@ jobs:
           reviewApiKey=${{ secrets.reviewApiKey }}
         deploymentMode: Validate
 
-    - if: inputs.environmentType == 'Production'
+    - if: inputs.environmentType == 'Prod'
       uses: azure/arm-deploy@v1
       name: Run what-if
       with:
