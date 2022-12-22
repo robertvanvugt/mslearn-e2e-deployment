@@ -30,3 +30,23 @@ jobs:
       with:
         name: website
         path: ./src/ToyCompany/ToyCompany.Website/bin/Release/netcoreapp3.1/publish/publish.zip
+
+
+  build-database:
+    name: Build database
+    runs-on: windows-latest # The build-database job uses a Windows runner. Currently, Visual Studio database projects must be built on the Windows operating system.
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Prepare MSBuild
+      uses: microsoft/setup-msbuild@v1.1
+
+    - name: Build database project
+      working-directory: ./src/ToyCompany/ToyCompany.Database
+      run: MSBuild.exe ToyCompany.Database.sqlproj -property:Configuration=Release
+
+    - name: Upload website as workflow artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: database
+        path: ./src/ToyCompany/ToyCompany.Database/bin/Release/ToyCompany.Database.dacpac
