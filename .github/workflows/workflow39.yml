@@ -1,11 +1,11 @@
 name: deploy-toy-website-end-to-end-39
 concurrency: toy-company
 
-# on:
+on:
+    workflow_dispatch:
 #   push:
 #     branches:
 #       - main
-#   workflow_dispatch:
 
 jobs:
 
