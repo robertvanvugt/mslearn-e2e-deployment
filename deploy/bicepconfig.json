@@ -7,19 +7,13 @@
         "adminusername-should-not-be-literal": {
           "level": "error"
         },
-        "max-outputs": {
-          "level": "error"
-        },
-        "max-params": {
-          "level": "error"
-        },
-        "max-resources": {
-          "level": "error"
-        },
-        "max-variables": {
+        "explicit-values-for-loc-params": {
           "level": "error"
         },
         "no-hardcoded-env-urls": {
+          "level": "error"
+        },
+        "no-hardcoded-location": {
           "level": "error"
         },
         "no-unnecessary-dependson": {
@@ -31,10 +25,16 @@
         "no-unused-vars": {
           "level": "error"
         },
+        "no-loc-expr-outside-params": {
+          "level": "error"
+        },
         "outputs-should-not-contain-secrets": {
           "level": "error"
         },
         "prefer-interpolation": {
+          "level": "error"
+        },
+        "protect-commandtoexecute-secrets": {
           "level": "error"
         },
         "secure-parameter-default": {
@@ -43,10 +43,19 @@
         "simplify-interpolation": {
           "level": "error"
         },
-        "use-protectedsettings-for-commandtoexecute-secrets": {
+        "use-stable-vm-image": {
           "level": "error"
         },
-        "use-stable-vm-image": {
+        "max-outputs": {
+          "level": "error"
+        },
+        "max-params": {
+          "level": "error"
+        },
+        "max-resources": {
+          "level": "error"
+        },
+        "max-variables": {
           "level": "error"
         }
       }
