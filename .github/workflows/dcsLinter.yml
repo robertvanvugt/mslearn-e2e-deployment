@@ -1,9 +1,12 @@
 name: Bicep linter
 
 on:
-  push:
+  pull_request:
     paths:
       - '*.bicep'
+  push:
+    branches:
+      - "main"
   workflow_dispatch:
 
 jobs:
@@ -11,11 +14,16 @@ jobs:
     name: Lint Bicep code
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+
+    - uses: actions/checkout@v3
 
     - name: Lint Bicep code
-      run: |
-        for file in $(find . -name '*.bicep'); do
-            az bicep build $file
-        done
-
+      uses: azure/powershell@v1
+      with:
+          inlineScript: |
+            $bicepFiles = get-childItem -Filter "*.bicep" -Recurse
+            foreach ($bicepFile in $bicepFiles) {
+              Write-Host "Validating $($bicepFile.FullName)"
+              az bicep build --file $($bicepFile.FullName)
+            }
+          azPSVersion: "latest"
