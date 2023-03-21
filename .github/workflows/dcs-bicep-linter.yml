@@ -24,9 +24,9 @@ jobs:
             $bicepFiles = get-childItem -Filter "*.bicep" -Recurse
             foreach ($bicepFile in $bicepFiles) {
 
-              Write-Host "#################################" -ForegroundColor 'cyan'
+              Write-Host "`n ----------------------------------------" -ForegroundColor 'cyan'
               Write-Host "Validating $($bicepFile.FullName)" -ForegroundColor 'cyan'
-              Write-Host "################################# `n" -ForegroundColor 'cyan'
+              Write-Host "----------------------------------------" -ForegroundColor 'cyan'
 
               az bicep build --file $($bicepFile.FullName)
 
