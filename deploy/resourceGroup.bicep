@@ -17,7 +17,7 @@ var tags = { Environment: environmentType }
 
 
 // RESOURCE DEPLOYMENTS
-resource resourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
+resource resourceGroup 'Microsoft.Resources/resourcceGroups@2021-04-01' = {
   name: resourceGroupName
   location: location
   tags: tags

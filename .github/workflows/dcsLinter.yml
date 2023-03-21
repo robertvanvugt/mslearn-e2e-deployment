@@ -23,7 +23,7 @@ jobs:
           inlineScript: |
             $bicepFiles = get-childItem -Filter "*.bicep" -Recurse
             foreach ($bicepFile in $bicepFiles) {
-              Write-Host "Validating $($bicepFile.FullName)"
+              Write-Host "Validating $($bicepFile.FullName)" -ForegroundColor 'cyan'
               az bicep build --file $($bicepFile.FullName)
             }
           azPSVersion: "latest"
