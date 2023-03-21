@@ -1,0 +1,21 @@
+name: Bicep linter
+
+on:
+  push:
+    paths:
+      - '*.bicep'
+  workflow_dispatch:
+
+jobs:
+  lint:
+    name: Lint Bicep code
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Lint Bicep code
+      run: |
+        for file in $(find . -name '*.bicep'); do
+            az bicep build $file
+        done
+
